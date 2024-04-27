@@ -1,3 +1,5 @@
+#Get Blod digit testdaset
+
 import torch
 from torchvision import datasets, transforms
 import cv2
