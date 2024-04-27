@@ -1,3 +1,4 @@
+#Get bold digit train dataset
 import torch
 from torchvision import datasets, transforms
 import cv2
@@ -11,14 +12,14 @@ transform = transforms.Compose([
 ])
 
 mnist_dataset = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
-filtered_indices = [i for i in range(len(mnist_dataset)) if mnist_dataset.targets[i] == 6][1000:1250]
+filtered_indices = [i for i in range(len(mnist_dataset)) if mnist_dataset.targets[i] == 6][0:1000]
 os.makedirs(r'E:\ACMMM\YJC\YJC\Data\Dilate\6\A', exist_ok=True)
 os.makedirs(r'E:\ACMMM\YJC\YJC\Data\Dilate\6\B', exist_ok=True)
 
 kernel = np.ones((2, 2), np.uint8)
 for i in filtered_indices:
     image, label = mnist_dataset[i]
-    image_np = (image.squeeze().numpy() * 255).astype(np.uint8)  # 将图像转为 uint8 格式
+    image_np = (image.squeeze().numpy() * 255).astype(np.uint8)  
 
     torch_image = torch.from_numpy(image_np / 255.0).unsqueeze(0)
     original_path = r'E:\ACMMM\YJC\YJC\Data\Dilate\6\B\origin_{}.png'.format(i)
